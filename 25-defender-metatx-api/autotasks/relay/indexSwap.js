@@ -3,7 +3,6 @@ const { DefenderRelaySigner, DefenderRelayProvider } = require('defender-relay-c
 
 const { ForwarderAbi } = require('../../src/forwarder');
 const ForwarderAddress = require('../../deploy.json').MinimalForwarder;
-const RegistryAddress = require('../../deploy.json').Registry;
 const Token = require('../../deploySwap.json').Token;
 const TestSwap = require('../../deploySwap.json').TestSwap;
 

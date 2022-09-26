@@ -9,7 +9,11 @@
     "local:sign": "hardhat run scripts/sign.js --network local",
     "create-relay": "node scripts/createRelay.js",
     "deploy": "node scripts/deploy.js",
+    "deploy-swap": "node scripts/deploySwap.js",
+    "deploy-test": "node scripts/deployTest.js",
     "sign": "hardhat run scripts/sign.js --network goerli",
+    "sign-swap": "hardhat run scripts/signSwap.js --network goerli",
+    "sign-test": "hardhat run scripts/signTest.js --network goerli",
     "events": "hardhat run scripts/events.js --network goerli",
     "verify": "hardhat run scripts/verify.js --network goerli",
     "build": "rollup -c",
@@ -44,6 +48,7 @@
     "typescript": "^4.8.3"
   },
   "dependencies": {
+    "@opengsn/contracts": "^3.0.0-beta.1",
     "eth-sig-util": "^3.0.1"
   }
 }

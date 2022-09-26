@@ -2,7 +2,7 @@ const { ethers } = require('hardhat');
 const { signMetaTxRequest } = require('../src/signer');
 const { readFileSync, writeFileSync } = require('fs');
 
-const DEFAULT_NAME = 'sign-test';
+const DEFAULT_NAME = 'sign-test-swap';
 
 function getInstance(name) {
   const address = JSON.parse(readFileSync('deploy.json'))[name];
@@ -10,18 +10,25 @@ function getInstance(name) {
   return ethers.getContractFactory(name).then(f => f.attach(address));
 }
 
+function getInstanceTest(name) {
+  const address = JSON.parse(readFileSync('deployTest.json'))[name];
+  if (!address) throw new Error(`Contract ${name} not found in deployTest.json`);
+  return ethers.getContractFactory(name).then(f => f.attach(address));
+}
+
 async function main() {
-  const forwarder = await getInstance('MinimalForwarder');
-  const registry = await getInstance("Registry");
+  const forwarder = await getInstance("MinimalForwarder");
+  const myToken = await getInstanceTest('MyToken');
+  const test = await getInstanceTest("Test");
   console.log(forwarder.address);
 
-  const { NAME: name, PRIVATE_KEY: signer } = process.env;
+  const { VALUE: value, PRIVATE_KEY: signer } = process.env;
   const from = new ethers.Wallet(signer).address;
-  console.log(`Signing registration of ${name || DEFAULT_NAME} as ${from}...`);
-  const data = registry.interface.encodeFunctionData('register', [name || DEFAULT_NAME]);
+  console.log(`Token transfer to : ${test.address}, amount : ${value} from ${from}...`);
+  const data = test.interface.encodeFunctionData('_safeTransferFrom', [test.address, value]);
 
  const result = await signMetaTxRequest(signer, forwarder, {
-    to: registry.address, from, data
+    to: test.address, from, data
   });
 
   writeFileSync('tmp/request.json', JSON.stringify(result, null, 2));

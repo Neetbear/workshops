@@ -690,7 +690,14 @@
     "@types/sinon-chai" "^3.2.3"
     "@types/web3" "1.0.19"
 
-"@openzeppelin/contracts@^4.4.1":
+"@opengsn/contracts@^3.0.0-beta.1":
+  "integrity" "sha512-ZQrpe8F45ONSyLnCeEbbSXWqUpP5EIjnOsIMHIudYDT+0c689EpzsZIMluX3RZhYrUMvc7JW05zx/sbCBeEhug=="
+  "resolved" "https://registry.npmjs.org/@opengsn/contracts/-/contracts-3.0.0-beta.1.tgz"
+  "version" "3.0.0-beta.1"
+  dependencies:
+    "@openzeppelin/contracts" "^4.2.0"
+
+"@openzeppelin/contracts@^4.2.0", "@openzeppelin/contracts@^4.4.1":
   "integrity" "sha512-o+pHCf/yMLSlV5MkDQEzEQL402i6SoRnktru+0rdSxVEFZcTzzGhZCAtZjUFyKGazMSv1TilzMg+RbED1N8XHQ=="
   "resolved" "https://registry.npmjs.org/@openzeppelin/contracts/-/contracts-4.4.1.tgz"
   "version" "4.4.1"
